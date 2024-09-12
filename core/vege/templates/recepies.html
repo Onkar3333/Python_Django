@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block start%}
+
+<div class="container mt-5">
+    
+    <form class="col-6 mx-auto card p-4 shadow-lg" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="text-center fw-bold">Add Recepie </h2>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Recepie Name</label>
+          <input name="Receipe_name" required type="text" class="form-control" >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Recepie Description</label><br>
+          <textarea name="Receipe_desc" required class="form-control" ></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Recepie Image</label>
+            <input name="Receipe_image" type="file" class="form-control" >
+          </div>
+
+        <button type="submit" class="btn btn-success">Add Recepie</button>
+      </form>
+
+      <table class="container">
+        <tr>
+            <th>ID</th>
+            <th>Receipe_name</th>
+            <th>Receipe_desc</th>
+            <th>Receipe_image</th>
+            <th>Actions</th>
+            
+        </tr>
+        {% for r in receipes %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><b>{{r.Receipe_name}}</b></td>
+            <td>{{r.Receipe_desc}}</td>
+            <td>
+                <img src="/media/{{r.Receipe_image}}" style="height: 100px;"></td>
+            <td><b><a href="#" class="btn btn-danger"> Delete </a></b></td>
+        </tr>
+        
+    
+        {% endfor %}
+    
+    </table>
+</div>
+
+{%endblock%}
