@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block start%}
+
+
+
+<h1>This is a Index Page <Section>
+
+
+
+        <h5>
+            <p style="color:chartreuse;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore temporibus
+                expedita, ut quam maiores dolore repellendus adipisci provident, voluptatem sint laboriosam eius
+                voluptatibus atque? Libero recusandae numquam provident accusantium debitis!</p>
+    </Section>
+    </h5>
+</h1>
+<a href="/about/">About Us</a> | <a href="/contact/">Contact Us</a>
+<br><br>
+
+<table class="container">
+    <tr>
+        <th>S. No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Can Vote</th>
+    </tr>
+
+    {% for people in peoples%}
+
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td><b>{{people.name}}</b></td>
+        <td>{{people.Age}}</td>
+        <td {% if people.Age <= 18 %} style="background:red" {% else%} style="background:green" {%endif%} >
+
+            {% if people.Age >= 18 %}
+            👍
+            {% else%}
+            👎
+            {%endif%}
+
+        </td>
+
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+
+
+{%endblock%}
